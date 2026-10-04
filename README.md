@@ -1,3 +1,6 @@
+# Scope
+This repository implements one of the benchmarks described in [the paper](https://arxiv.org/abs/2609.33451) presenting [DAOCP](https://github.com/AlbertoZaupa/daocp). Running the code requires [this Acados fork](https://github.com/AlbertoZaupa/acados).
+
 # Quadrotor QP solver benchmark
 
 Two C++ utilities compare DAOCP, HPIPM, DAQP, and qpOASES inside the same
@@ -11,7 +14,7 @@ for Quadrotor Agile Flight*](https://arxiv.org/abs/2109.01365).
 
 ## Requirements and build
 
-Use Linux, CMake 3.18+, a C++17 compiler, and Python with the packages in
+Install [this Acados fork](https://github.com/AlbertoZaupa/acados). Use Linux, CMake 3.18+, a C++17 compiler, and Python with the packages in
 `requirements.txt` (CasADi for model generation; NumPy and Matplotlib for plots).
 Acados must already be installed with its development headers, including
 HPIPM, BLASFEO, and DAOCP headers. To run all four solvers, its build must enable
@@ -19,9 +22,7 @@ HPIPM, BLASFEO, and DAOCP headers. To run all four solvers, its build must enabl
 The benchmark accepts all four solver names even when a backend is disabled;
 selecting a disabled backend reports an error.
 
-Export the installation's shared library directory in `LD_LIBRARY_PATH`.
-**Put it before other HPIPM or BLASFEO installations** so the loaded libraries
-match Acados. For example, in `~/.bashrc`:
+Export the installation's shared library directory in `LD_LIBRARY_PATH`. For example, in `~/.bashrc`:
 
 ```bash
 export ACADOS_SOURCE_DIR=/path/to/acados
@@ -71,6 +72,8 @@ Two horizontal cases have benchmark aliases:
 |---|---:|---:|---:|
 | `challenging` | 15 | 30 | 2 |
 | `daocp-worst` | 15 | 60 | 1 |
+
+`challenging` is a dyanmically feasible, but relatively challenging trajectory, while `daocp-worst` is the trajectory where DAOCP performs worst relatively to the other solvers. 
 
 ## Single trajectory benchmark
 
